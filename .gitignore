@@ -1,0 +1,4 @@
+*.tif
+*.TIF
+venv/
+__pycache__/
