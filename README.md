@@ -1,8 +1,8 @@
-\# NDVI from Landsat 8 –  Southwest-Nigeria, 2025
+\# NDVI from Landsat – Southwest Nigeria, November 2025
 
 
 
-Vegetation index map computed from Landsat Collection 2 Level-2 surface reflectance data.
+Vegetation index map of Southwest Nigeria computed from Landsat Collection 2 Level-2 surface reflectance data, using a Python script built on rasterio.
 
 
 
@@ -16,7 +16,7 @@ Vegetation index map computed from Landsat Collection 2 Level-2 surface reflecta
 
 \- Scene date: 2025-11-26
 
-\- Path/Row: \[190/055]
+\- Path/Row: 190/055
 
 \- Product: Collection 2 Level-2 (surface reflectance)
 
@@ -28,13 +28,13 @@ Vegetation index map computed from Landsat Collection 2 Level-2 surface reflecta
 
 NDVI = (NIR - Red) / (NIR + Red), using bands SR\_B5 (NIR) and SR\_B4 (Red).
 
-The script reads both bands with rasterio, computes NDVI, and saves a GeoTIFF and a preview PNG.
+The script reads both bands with rasterio, computes NDVI, clips values to the -1 to 1 range, and saves a GeoTIFF and a preview PNG.
 
 
 
 \## Results
 
-Sampled pixel values, checked against a manual QGIS calculation:
+Sampled pixel values, checked against a manual QGIS Raster Calculator result:
 
 
 
@@ -52,7 +52,15 @@ Sampled pixel values, checked against a manual QGIS calculation:
 
 
 
-Vegetation shows the highest values, water is near zero, and built-up and bare surfaces fall in between, as expected.
+Vegetation shows the highest values, water is near zero, and built-up and bare surfaces fall in between, as expected from their spectral behavior.
+
+
+
+\## Notes and limitations
+
+\- The scene was acquired in late November, at the start of the dry season, so NDVI in non-forest vegetation may be lower than in the wet season.
+
+\- - Clouds, cloud shadows, and haze (including harmattan dust in the dry season) can distort NDVI. No cloud masking was applied in this version; masking with the QA\_PIXEL band is planned as a next step.
 
 
 
